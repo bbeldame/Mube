@@ -5,21 +5,30 @@ import {
   Text,
   View
 } from 'react-native';
+import SocketIOClient from 'socket.io-client';
+
+import Button from './button';
 
 export default class Mube extends Component {
+  constructor(props) {
+    super(props);
+  
+    // Creating the socket-client instance will automatically connect to the server.
+    this.socket = SocketIOClient('http://localhost:3000');
+  }
+
+  sendPattern = (pattern) => {
+    console.log('gonna send pattern');
+    this.socket.emit('pattern', { pattern, cool: 'hey' }, (data) => {
+      console.log(data);
+      console.log('hello');
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <Button sendPattern={this.sendPattern}/>
       </View>
     );
   }
