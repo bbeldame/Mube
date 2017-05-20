@@ -23,7 +23,7 @@ class Button extends Component {
   _onClick = () => {
     pattern.push(0);
     clearTimeout(timer);
-    timer = setTimeout(() => { this.props.sendPattern(pattern) }, 1000); // 1000 ms avant envoi du pattern
+    timer = setTimeout(() => { this.props.sendPattern(pattern);pattern = [] }, 1000); // 1000 ms avant envoi du pattern
 
     console.log("pressed");
     console.log(pattern)
