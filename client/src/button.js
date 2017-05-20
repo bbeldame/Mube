@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 const styles = {
   button: {
-    width: 300,
-    height: 300,
-    backgroundColor: 'blue'
+    width: 50,
+    height: 50,
+    backgroundColor: 'steelblue'
   },
 };
 
@@ -14,7 +14,7 @@ let pattern = [];
 class Button extends Component {
   constructor(props){
     super(props);
-
+    
     this.state = {
       pattern: [],
     };
@@ -38,8 +38,9 @@ class Button extends Component {
         delayLongPress={150}
         onLongPress={this._onLongPress}
         onPress={this._onPress}
+        style={styles.button}
       >
-        <View style={styles.button}>
+        <View>
         </View>
       </TouchableOpacity>
     )
