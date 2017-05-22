@@ -15,7 +15,6 @@ export default class Mube extends Component {
     super(props);
   
     // Creating the socket-client instance will automatically connect to the server.
-    this.socket = SocketIOClient('http://localhost:3000');
     this.socket = SocketIOClient(`http://${config.ip}:${config.port}`);
     this.socket.on('message', this.onReceivedMessage);
     this.state = {
