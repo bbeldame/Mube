@@ -5,6 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
+import { Accelerometer } from 'expo';
 import SocketIOClient from 'socket.io-client';
 
 import config from './config.json';
@@ -13,11 +14,17 @@ import Button from './button';
 export default class Mube extends Component {
   constructor(props) {
     super(props);
-  
+
     // Creating the socket-client instance will automatically connect to the server.
     this.socket = SocketIOClient(`http://${config.ip}:${config.port}`);
     this.socket.on('message', this.onReceivedMessage);
+    Accelerometer.addListener((result) => {
+      console.log(result);
+      this.socket.emit('accelerometer', result);
+    });
+    Accelerometer.setUpdateInterval(2000);
     this.state = {
+      accelerometerData: {},
       acc: 'Hello',
     };
   }
