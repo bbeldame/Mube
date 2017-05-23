@@ -14,7 +14,7 @@ export default class App extends Component {
 
   sendPattern = (pattern) => {
     console.log('gonna send pattern');
-    this.socket.emit('pattern', { pattern, cool: 'hey' }, (data) => {
+    this.socket.emit('pattern', { pattern }, (data) => {
       console.log(data);
       console.log('hello');
     });
