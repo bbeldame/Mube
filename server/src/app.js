@@ -20,7 +20,7 @@ websocket.on('connection', (socket) => {
       // On supprime toutes les rooms qui ont été créées il y a plus de 10 secs
       if ((Date.now() - room.datePattern) / 1000 > 10){
         room.first.inRoom = null;
-        if (room.second != 'undefined'){
+        if (room.second != undefined){
           room.second.inRoom = null;
         }
         delete rooms[index]; 
@@ -69,7 +69,7 @@ websocket.on('connection', (socket) => {
   });
 
   socket.on('accelerometer', (data) => {
-    if (socket.friend != 'undefined'){
+    if (socket.friend != undefined){
       console.log('Sending accelerometer data to ' + socket.friend.id);
       socket.friend.emit('friendAccelerometer', data);
     } else {
