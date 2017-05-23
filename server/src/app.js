@@ -13,6 +13,7 @@ const rooms = [];
 
 // The event will be called when a client is connected.
 websocket.on('connection', (socket) => {
+  console.log('salut', socket.id, socket.handshake.headers.host);
   sockets.push(socket);
   socket.inRoom = false;
   socket.on('pattern', (data) => {
@@ -69,11 +70,12 @@ websocket.on('connection', (socket) => {
   });
 
   socket.on('accelerometer', (data) => {
+    console.log('data', data);
     if (socket.friend != undefined){
-      console.log('Sending accelerometer data to ' + socket.friend.id);
+      console.log('Sendind', data, 'to' + socket.friend.id);
       socket.friend.emit('friendAccelerometer', data);
     } else {
-      console.log('Not sending data to anyone!');
+      // console.log('Not sending data to anyone!');
     }
   });
 });
