@@ -12,11 +12,13 @@ export default class App extends Component {
     super(props);
   
     // Creating the socket-client instance will automatically connect to the server.
-    this.socket = SocketIOClient('http://localhost:3000');
+    this.socket = SocketIOClient('http://10.0.9.66:3000');
     this.socket.on('friendAccelerometer', this.onReceivedAcc);
     this.state = {
       accelerometerData: {},
     };
+
+    window.addEventListener("deviceorientation", this.sendRotation, true);
   }
 
   sendPattern = (pattern) => {
@@ -46,7 +48,24 @@ export default class App extends Component {
     console.log(pattern)
   }
 
+  map = (n) => {
+    let start1 = -200;
+    let stop1 = 200;
+    let start2 = -1;
+    let stop2 = 1;
+
+    return (((n-start1)/(stop1-start1))*(stop2-start2)+start2).toFixed(2);
+  }
+
+  sendRotation = (e) => {
+    this.socket.emit('accelerometer', {x: this.map(e.alpha), y: this.map(e.beta), z: this.map(e.gamma)}, (data) => {
+      console.log(data);
+    })
+  }
+
   render() {
+    
+
     return (
       <div onClick={this._onClick} style={styles.container}>
         <ThreeButton acc={this.state.accelerometerData}/>
