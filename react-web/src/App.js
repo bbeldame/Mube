@@ -13,7 +13,7 @@ export default class App extends Component {
     super(props);
   
     // Creating the socket-client instance will automatically connect to the server.
-    this.socket = SocketIOClient('http://127.0.0.1:3000');
+    this.socket = SocketIOClient('http://10.0.9.205:3000');
     this.socket.on('friendAccelerometer', this.onReceivedAcc);
     this.state = {
       accelerometerData: {},
@@ -31,7 +31,7 @@ export default class App extends Component {
   }
 
   onReceivedAcc = (data) => {
-    connected=true;
+    connected = true;
     console.log('receveid', data);
     this.setState({
       accelerometerData: data,
@@ -65,16 +65,12 @@ export default class App extends Component {
     });
     if(!connected){
       this.setState({
-      accelerometerData: {x: this.map(e.alpha), y: this.map(e.beta), z: this.map(e.gamma)}
-    });
+        accelerometerData: {x: this.map(e.alpha), y: this.map(e.beta), z: this.map(e.gamma)}
+      });
     }
   }
 
-  
-
   render() {
-    
-
     return (
       <div onClick={this._onClick} style={styles.container}>
         <ThreeButton acc={this.state.accelerometerData}/>
