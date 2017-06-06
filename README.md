@@ -1,1 +1,36 @@
 # Mube
+————————————
+## Description
+
+- Mube is an app that allows two people to connect with websockets, showing a simple cube as an interface. 
+- When two people connect they can use their phone's accelerometer to make the cube of the other person rotate.
+
+## How to install
+ 
+- move to /server directory
+- `npm install`
+- then move to /react-web directory
+- `npm install` 
+
+## How to start app
+
+- first start server :
+- move to /server directory and use 
+- `npm run dev`
+- then start web app :
+- move to /react-web directory
+- `npm start`
+
+## How to use
+
+- While on the same Wi-Fi network, you will need to modify socketIO IP with your local IP in /react-web/APP.js. 
+- example :
+- `// Creating the socket-client instance will automatically connect to the server.`
+- `this.socket = SocketIOClient('http://127.0.0.1:3000');`
+
+
+————————————
+- Developer(s)
+- Implemented features
+- Planned features
+————————————
