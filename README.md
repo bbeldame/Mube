@@ -27,8 +27,7 @@
 - example :
 - `// Creating the socket-client instance will automatically connect to the server.`
 - `this.socket = SocketIOClient('http://127.0.0.1:3000');`
-- To connect two clients simply tap or click the cube the same number of times, you'll know you're connected if both 
-- cubes are the same color.
+- To connect two clients simply tap or click the cube the same number of times, you'll know you're connected if both cubes are the same color.
 
 
 ————————————
