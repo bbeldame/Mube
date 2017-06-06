@@ -42,5 +42,14 @@
 - WebsocketIO connection
 - Phone accelerometer exchange
 - Three.js
- 
+
+## Planned features
+
+- Better rotation fluidity
+- Better cube design with three.js
+- General UI changes
+- Connection status visual
+
+
+
 ————————————
