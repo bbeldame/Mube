@@ -27,10 +27,21 @@
 - example :
 - `// Creating the socket-client instance will automatically connect to the server.`
 - `this.socket = SocketIOClient('http://127.0.0.1:3000');`
+- To connect two clients simply tap or click the cube the same number of times, you'll know you're connected if both 
+- cubes are the same color.
 
 
 ————————————
-- Developer(s)
-- Implemented features
-- Planned features
+## Developer(s)
+
+- [bbeldame](https://github.com/bbeldame) : Basile Beldame
+- [Drakncel](https://github.com/Drakncel) : Florian Pigis
+- [Kier4n](https://github.com/Kier4n) : Kieran Boggs
+
+## Implemented features
+
+- WebsocketIO connection
+- Phone accelerometer exchange
+- Three.js
+ 
 ————————————
