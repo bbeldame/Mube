@@ -33,6 +33,8 @@ class Simple extends React.Component {
   }
 
   render() {
+    console.log('this.props.color', this.props.color);
+    console.log(parseInt(this.props.color, 16));
     // or you can use:
     // width = window.innerWidth
     // height = window.innerHeight
@@ -63,7 +65,7 @@ class Simple extends React.Component {
             depth={1}
           />
           <meshBasicMaterial
-            color={0x00ff00}
+            color={parseInt(this.props.color, 16)}
           />
         </mesh>
       </scene>

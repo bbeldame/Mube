@@ -7,6 +7,7 @@ import ThreeButton from './ThreeButton';
 let pattern = [];
 let timer = null;
 let connected = false;
+const defaultColor = '00FF00';
 
 export default class App extends Component {
   constructor(props) {
@@ -16,8 +17,10 @@ export default class App extends Component {
     this.socket = SocketIOClient('http://10.0.9.205:3000');
     this.socket.on('friendAccelerometer', this.onReceivedAcc);
     this.state = {
+      color: defaultColor,
       accelerometerData: {},
     };
+    this.socket.on('color', this.onReceivedColor);
 
     window.addEventListener("deviceorientation", this.sendRotation, true);
   }
@@ -36,6 +39,11 @@ export default class App extends Component {
     this.setState({
       accelerometerData: data,
     });
+  }
+
+  onReceivedColor = ({ color }) => {
+    console.log('color', color);
+    this.setState({ color });
   }
 
   _onClick = () => {
@@ -73,7 +81,7 @@ export default class App extends Component {
   render() {
     return (
       <div onClick={this._onClick} style={styles.container}>
-        <ThreeButton acc={this.state.accelerometerData}/>
+        <ThreeButton color={this.state.color} acc={this.state.accelerometerData}/>
       </div>
     );
   }

@@ -11,6 +11,15 @@ server.listen(3000, () => console.log('listening on *:3000'));
 const sockets = [];
 const rooms = [];
 
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '';
+  for (let i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 // The event will be called when a client is connected.
 websocket.on('connection', (socket) => {
   console.log('salut', socket.id, socket.handshake.headers.host);
@@ -35,7 +44,11 @@ websocket.on('connection', (socket) => {
       matchingRoom.second = socket;
       socket.inRoom = true;
 
+      const color = getRandomColor();
+      socket.emit('color', { color });
+
       socket.friend = matchingRoom.first;
+      socket.friend.emit('color', { color });
       matchingRoom.first.friend = socket;
       // Si on a pas matché de room et si on est pas dans une room
     } else if (matchingRoom.length == 0 && !socket.inRoom){
@@ -48,7 +61,7 @@ websocket.on('connection', (socket) => {
       )
 
       socket.inRoom = true;
-    } else {
+    } else if (matchingRoom[0]) {
       matchingRoom[0].datePattern = Date.now();
     }
 
